@@ -13,8 +13,9 @@ app.layout = html.Div(
                 html.H1("Range Picker"),
                 dash_datetimepicker.DashDatetimepicker(
                     id="input-range",
-                    utc=True,
-                    locale="fr",
+                    utc=False,
+                    locale="uk",
+                    maxDays=5,
                 ),
                 html.Div(id="output-range"),
             ]
@@ -25,9 +26,32 @@ app.layout = html.Div(
                 dash_datetimepicker.DashDatetimepickerSingle(
                     id="input-single",
                     date=datetime.utcnow() - timedelta(days=1),
-                    utc=True,
+                    utc=False,
                 ),
                 html.Div(id="output-single"),
+            ]
+        ),
+        html.Div(
+            [
+                html.H1("Range Picker UTC"),
+                dash_datetimepicker.DashDatetimepicker(
+                    id="input-range-utc",
+                    utc=True,
+                    locale="uk",
+                    maxDays=5,
+                ),
+                html.Div(id="output-range-utc"),
+            ]
+        ),
+        html.Div(
+            [
+                html.H1("Single Picker UTC"),
+                dash_datetimepicker.DashDatetimepickerSingle(
+                    id="input-single-utc",
+                    date=datetime.utcnow() - timedelta(days=1),
+                    utc=True,
+                ),
+                html.Div(id="output-single-utc"),
             ]
         ),
     ]
@@ -47,6 +71,23 @@ def display_output_range(startDate, endDate):
     [Input("input-single", "date")],
 )
 def display_output_single(date):
+    return "You have entered date {}".format(date)
+
+
+@app.callback(
+    Output("output-range-utc", "children"),
+    [Input("input-range-utc", "startDate"), Input("input-range", "endDate")],
+)
+def display_output_range_utc(startDate, endDate):
+    return "You have entered range from {} to {}".format(startDate, endDate)
+
+
+
+@app.callback(
+    Output("output-single-utc", "children"),
+    [Input("input-single-utc", "date")],
+)
+def display_output_single_utc(date):
     return "You have entered date {}".format(date)
 
 

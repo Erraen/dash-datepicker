@@ -105,10 +105,16 @@ export default class DatetimeRangePicker extends Component {
     return this.state.start.isSameOrBefore(date, "day");
   }
 
+  validateMaxDate(date) {
+    if (!this.props.maxDays) return true;
+    return date.diff(this.state.start) <= 86400000 * this.props.maxDays;
+  }
+
   isValidEndDate(currentDate, selectedDate) {
     return (
-      this.validateMinDate(currentDate) &&
-      this.props.isValidEndDate(currentDate, selectedDate)
+      this.validateMinDate(currentDate)
+        && this.props.isValidEndDate(currentDate, selectedDate)
+        && this.validateMaxDate(currentDate)
     );
   }
 
@@ -122,12 +128,17 @@ export default class DatetimeRangePicker extends Component {
     };
 
     if (this.state.end.isBefore(date)) {
-      options.end = date.add(1, "d");
+      options.end = moment(date).add(1, "d");
+    } else if (this.state.end.diff(date) > 86400000 * this.props.maxDays) {
+      options.end = moment(date).add(this.props.maxDays, "d");
     }
 
     this.setState(options, () => {
       this.props.onChange(this.propsToPass());
       this.props.onStartDateChange(this.propsToPass().start);
+      if (options.end) {
+        this.props.onEndDateChange(this.propsToPass().end);
+      }
     });
   }
 
@@ -135,7 +146,6 @@ export default class DatetimeRangePicker extends Component {
     if (typeof date === "string") {
       return;
     }
-
     this.setState({ end: date }, () => {
       this.props.onChange(this.propsToPass());
       this.props.onEndDateChange(this.propsToPass().end);
@@ -151,7 +161,14 @@ export default class DatetimeRangePicker extends Component {
   }
 
   renderDay(props, currentDate) {
-    const { start, end } = this.state;
+    let start, end;
+    if (this.props.utc) {
+      start = moment.utc(this.state.start).startOf('day');
+      end = moment.utc(this.state.end).startOf('day');
+    } else {
+      start = moment(this.state.start).startOf('day');
+      end = moment(this.state.end).startOf('day');
+    }
     const { className, ...rest } = props;
     const date = moment(props.key, "M_D");
 
@@ -159,7 +176,6 @@ export default class DatetimeRangePicker extends Component {
     let classes = date.isBetween(start, end, "day")
       ? `${props.className} in-selecting-range`
       : props.className;
-
     // add rdtActive to selected startdate and endDate in pickers
     classes =
       date.isSame(start, "day") || date.isSame(end, "day")
@@ -224,6 +240,7 @@ DatetimeRangePicker.defaultProps = {
   pickerClassName: "",
   closeOnSelect: false,
   inputProps: undefined,
+  maxDays: null,
   onEndDateBlur: () => {},
   endTimeConstraints: {},
   onEndDateFocus: () => {},
@@ -301,6 +318,10 @@ DatetimeRangePicker.propTypes = {
    * The function receives (currentDate, selectedDate) and shall return a true or false whether the currentDate is valid or not.
    */
   isValidStartDate: PropTypes.func,
+  /**
+   * Set max difference between startDate and endDate
+   */
+  maxDays: PropTypes.number,
   /**
    * Callback is triggered when user clicks outside the end date input.
    * The callback receives the selected moment object as only parameter, if the date in the input is valid.

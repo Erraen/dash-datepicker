@@ -9,12 +9,17 @@ import moment from 'moment';
 export default class DashDatetimepicker extends Component {
     renderDay(props, currentDate) {
         const {className, ...rest} = props;
-
+        let date;
+        if (this.props.utc) {
+            date = moment.utc(props.key, 'M_D');
+        } else {
+            date = moment(props.key, 'M_D');
+        }
         // Add rdtActive to selected date
         let classes = props.className;
         classes =
             this.state &&
-            moment(props.key, 'M_D').isSame(this.state.date, 'day')
+                date.isSame(moment(this.state.date).startOf('day'), 'day')
                 ? `${classes} rdtActive`
                 : classes;
 
@@ -29,7 +34,6 @@ export default class DashDatetimepicker extends Component {
         if (typeof date === 'string') {
             return;
         }
-
         this.setState({
             date: date,
         });

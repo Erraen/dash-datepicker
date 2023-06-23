@@ -40,6 +40,7 @@ DashDatetimepicker.defaultProps = {
   endDate: new Date(),
   utc: false,
   locale: null,
+  maxDays: null,
 };
 
 DashDatetimepicker.propTypes = {
@@ -76,6 +77,10 @@ DashDatetimepicker.propTypes = {
    * Manually set the locale for the react-datetime instance. Moment.js locale needs to be loaded to be used, see i18n docs.
    */
   locale: PropTypes.string,
+  /**
+   * Set max difference between startDate and endDate
+   */
+  maxDays: PropTypes.number,
 };
 
 export const propTypes = DashDatetimepicker.propTypes;
