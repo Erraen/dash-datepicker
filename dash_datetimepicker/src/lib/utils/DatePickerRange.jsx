@@ -178,6 +178,7 @@ export default class DatetimeRangePicker extends Component {
 
     return (
       <div
+        id={this.props.id}
         className={"datepicker-div " + this.props.className}
         onFocus={this.onFocus.bind(this)}
         onBlur={this.onBlur.bind(this)}
