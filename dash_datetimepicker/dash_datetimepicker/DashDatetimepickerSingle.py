@@ -24,20 +24,19 @@ Keyword arguments:
     When True, input time values will be interpreted as UTC (Zulu
     time) by Moment.js. Otherwise they will default to the user's
     local timezone."""
+    _children_props = []
+    _base_nodes = ['children']
+    _namespace = 'dash_datetimepicker'
+    _type = 'DashDatetimepickerSingle'
     @_explicitize_args
     def __init__(self, id=Component.UNDEFINED, date=Component.UNDEFINED, utc=Component.UNDEFINED, locale=Component.UNDEFINED, **kwargs):
         self._prop_names = ['id', 'date', 'locale', 'utc']
-        self._type = 'DashDatetimepickerSingle'
-        self._namespace = 'dash_datetimepicker'
         self._valid_wildcard_attributes =            []
         self.available_properties = ['id', 'date', 'locale', 'utc']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
-        _locals.update(kwargs)  # For wildcard attrs
-        args = {k: _locals[k] for k in _explicit_args if k != 'children'}
-        for k in []:
-            if k not in args:
-                raise TypeError(
-                    'Required argument `' + k + '` was not specified.')
+        _locals.update(kwargs)  # For wildcard attrs and excess named props
+        args = {k: _locals[k] for k in _explicit_args}
+
         super(DashDatetimepickerSingle, self).__init__(**args)

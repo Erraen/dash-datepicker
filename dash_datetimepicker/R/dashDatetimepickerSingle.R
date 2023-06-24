@@ -1,5 +1,6 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
+#' @export
 dashDatetimepickerSingle <- function(id=NULL, date=NULL, locale=NULL, utc=NULL) {
     
     props <- list(id=id, date=date, locale=locale, utc=utc)

@@ -87,6 +87,17 @@
           "value": "null",
           "computed": false
         }
+      },
+      "maxDays": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "Set max difference between startDate and endDate",
+        "defaultValue": {
+          "value": "null",
+          "computed": false
+        }
       }
     }
   },

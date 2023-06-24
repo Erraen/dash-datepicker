@@ -22,6 +22,9 @@ Keyword arguments:
     Manually set the locale for the react-datetime instance. Moment.js
     locale needs to be loaded to be used, see i18n docs.
 
+- maxDays (number; optional):
+    Set max difference between startDate and endDate.
+
 - startDate (string; default new Date(new Date() - 1000 * 60 * 60 * 24)):
     The startDate of the range picker. It will fire a dash callback if
     it is updated.
@@ -30,20 +33,19 @@ Keyword arguments:
     When True, input time values will be interpreted as UTC (Zulu
     time) by Moment.js. Otherwise they will default to the user's
     local timezone."""
+    _children_props = []
+    _base_nodes = ['children']
+    _namespace = 'dash_datetimepicker'
+    _type = 'DashDatetimepicker'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, endDate=Component.UNDEFINED, startDate=Component.UNDEFINED, utc=Component.UNDEFINED, locale=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'endDate', 'locale', 'startDate', 'utc']
-        self._type = 'DashDatetimepicker'
-        self._namespace = 'dash_datetimepicker'
+    def __init__(self, id=Component.UNDEFINED, endDate=Component.UNDEFINED, startDate=Component.UNDEFINED, utc=Component.UNDEFINED, locale=Component.UNDEFINED, maxDays=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'endDate', 'locale', 'maxDays', 'startDate', 'utc']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'endDate', 'locale', 'startDate', 'utc']
+        self.available_properties = ['id', 'endDate', 'locale', 'maxDays', 'startDate', 'utc']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
-        _locals.update(kwargs)  # For wildcard attrs
-        args = {k: _locals[k] for k in _explicit_args if k != 'children'}
-        for k in []:
-            if k not in args:
-                raise TypeError(
-                    'Required argument `' + k + '` was not specified.')
+        _locals.update(kwargs)  # For wildcard attrs and excess named props
+        args = {k: _locals[k] for k in _explicit_args}
+
         super(DashDatetimepicker, self).__init__(**args)
