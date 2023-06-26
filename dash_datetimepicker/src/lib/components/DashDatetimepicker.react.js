@@ -81,6 +81,20 @@ DashDatetimepicker.propTypes = {
    * Set max difference between startDate and endDate
    */
   maxDays: PropTypes.number,
+  /**
+   * Defines the format for the date.
+   * It accepts any Moment date format (not in localized format).
+   * If true the date will be displayed using the defaults for the current locale.
+   * If false the datepicker is disabled and the component can be used as timepicker.
+   */
+  dateFormat: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  /**
+   * Defines the format for the time.
+   * It accepts any Moment time format (not in localized format).
+   * If true the time will be displayed using the defaults for the current locale.
+   * If false the timepicker is disabled and the component can be used as datepicker.
+   */
+  timeFormat: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
 };
 
 export const propTypes = DashDatetimepicker.propTypes;

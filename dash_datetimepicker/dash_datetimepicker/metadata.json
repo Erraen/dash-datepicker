@@ -98,6 +98,36 @@
           "value": "null",
           "computed": false
         }
+      },
+      "dateFormat": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "bool"
+            },
+            {
+              "name": "string"
+            }
+          ]
+        },
+        "required": false,
+        "description": "Defines the format for the date.\nIt accepts any Moment date format (not in localized format).\nIf true the date will be displayed using the defaults for the current locale.\nIf false the datepicker is disabled and the component can be used as timepicker."
+      },
+      "timeFormat": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "bool"
+            },
+            {
+              "name": "string"
+            }
+          ]
+        },
+        "required": false,
+        "description": "Defines the format for the time.\nIt accepts any Moment time format (not in localized format).\nIf true the time will be displayed using the defaults for the current locale.\nIf false the timepicker is disabled and the component can be used as datepicker."
       }
     }
   },
@@ -194,6 +224,36 @@
           "value": "null",
           "computed": false
         }
+      },
+      "dateFormat": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "bool"
+            },
+            {
+              "name": "string"
+            }
+          ]
+        },
+        "required": false,
+        "description": "Defines the format for the date.\nIt accepts any Moment date format (not in localized format).\nIf true the date will be displayed using the defaults for the current locale.\nIf false the datepicker is disabled and the component can be used as timepicker."
+      },
+      "timeFormat": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "bool"
+            },
+            {
+              "name": "string"
+            }
+          ]
+        },
+        "required": false,
+        "description": "Defines the format for the time.\nIt accepts any Moment time format (not in localized format).\nIf true the time will be displayed using the defaults for the current locale.\nIf false the timepicker is disabled and the component can be used as datepicker."
       }
     }
   }

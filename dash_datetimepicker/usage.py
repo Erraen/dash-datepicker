@@ -16,6 +16,7 @@ app.layout = html.Div(
                     utc=False,
                     locale="uk",
                     maxDays=5,
+                    dateFormat="DD.MM.YY",
                 ),
                 html.Div(id="output-range"),
             ]
@@ -39,6 +40,7 @@ app.layout = html.Div(
                     utc=True,
                     locale="uk",
                     maxDays=5,
+                    dateFormat="DD.MM.YY",
                 ),
                 html.Div(id="output-range-utc"),
             ]

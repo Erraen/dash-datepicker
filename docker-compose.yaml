@@ -5,6 +5,8 @@ services:
     build: .
     command: tail -f /dev/null
     container_name: dash-datepicker
+    environment:
+      NODE_OPTIONS: --openssl-legacy-provider
     working_dir: /app
     volumes:
       - ./:/app

@@ -61,31 +61,45 @@ DashDatetimepicker.defaultProps = {
 };
 
 DashDatetimepicker.propTypes = {
-    /**
-     * The ID used to identify this component in Dash callbacks.
-     */
-    id: PropTypes.string,
-    /**
-     * Dash-assigned callback that should be called to report property changes
-     * to Dash, to make them available for callbacks.
-     */
-    setProps: PropTypes.func,
-    /**
-     * The date of the range picker. It will fire a dash callback if it is updated.
-     */
-    date: PropTypes.oneOfType([
-        PropTypes.instanceOf(moment),
-        PropTypes.instanceOf(Date),
-        PropTypes.string,
-    ]),
-    /**
-     * When true, input time values will be interpreted as UTC (Zulu time) by Moment.js. Otherwise they will default to the user's local timezone.
-     */
-    utc: PropTypes.bool,
-    /**
-     * Manually set the locale for the react-datetime instance. Moment.js locale needs to be loaded to be used, see i18n docs.
-     */
-    locale: PropTypes.string,
+  /**
+   * The ID used to identify this component in Dash callbacks.
+   */
+  id: PropTypes.string,
+  /**
+   * Dash-assigned callback that should be called to report property changes
+   * to Dash, to make them available for callbacks.
+   */
+  setProps: PropTypes.func,
+  /**
+   * The date of the range picker. It will fire a dash callback if it is updated.
+   */
+  date: PropTypes.oneOfType([
+    PropTypes.instanceOf(moment),
+    PropTypes.instanceOf(Date),
+    PropTypes.string,
+  ]),
+  /**
+   * When true, input time values will be interpreted as UTC (Zulu time) by Moment.js. Otherwise they will default to the user's local timezone.
+   */
+  utc: PropTypes.bool,
+  /**
+   * Manually set the locale for the react-datetime instance. Moment.js locale needs to be loaded to be used, see i18n docs.
+   */
+  locale: PropTypes.string,
+  /**
+   * Defines the format for the date.
+   * It accepts any Moment date format (not in localized format).
+   * If true the date will be displayed using the defaults for the current locale.
+   * If false the datepicker is disabled and the component can be used as timepicker.
+   */
+  dateFormat: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  /**
+   * Defines the format for the time.
+   * It accepts any Moment time format (not in localized format).
+   * If true the time will be displayed using the defaults for the current locale.
+   * If false the timepicker is disabled and the component can be used as datepicker.
+   */
+  timeFormat: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
 };
 
 export const propTypes = DashDatetimepicker.propTypes;

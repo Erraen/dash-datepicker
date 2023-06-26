@@ -1,9 +1,9 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 #' @export
-dashDatetimepickerSingle <- function(id=NULL, date=NULL, locale=NULL, utc=NULL) {
+dashDatetimepickerSingle <- function(id=NULL, date=NULL, dateFormat=NULL, locale=NULL, timeFormat=NULL, utc=NULL) {
     
-    props <- list(id=id, date=date, locale=locale, utc=utc)
+    props <- list(id=id, date=date, dateFormat=dateFormat, locale=locale, timeFormat=timeFormat, utc=utc)
     if (length(props) > 0) {
         props <- props[!vapply(props, is.null, logical(1))]
     }
@@ -11,7 +11,7 @@ dashDatetimepickerSingle <- function(id=NULL, date=NULL, locale=NULL, utc=NULL) 
         props = props,
         type = 'DashDatetimepickerSingle',
         namespace = 'dash_datetimepicker',
-        propNames = c('id', 'date', 'locale', 'utc'),
+        propNames = c('id', 'date', 'dateFormat', 'locale', 'timeFormat', 'utc'),
         package = 'dashDatetimepicker'
         )
 
